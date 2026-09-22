@@ -1,123 +1,237 @@
-# AI Berkshire — 项目指令
+# ai-berkshire — Shivay's fork, Indian market, English only
 
-## 项目概述
+A fork of [xbtlin/ai-berkshire](https://github.com/xbtlin/ai-berkshire). The upstream
+repo researches Chinese, Hong Kong, US and Taiwan companies and writes every report in
+Chinese. This fork researches **Indian listed companies and writes in English**.
 
-基于 Claude Code 的价值投资研究 Skill 合集。四大师框架：巴菲特、芒格、段永平、李录。
-GitHub: xbtlin/ai-berkshire
+The method is theirs. The market, the data sources and the language are mine.
 
-## 项目结构
+---
 
-```
-skills/          — 投研 Skill 定义（.md），复制到 ~/.claude/commands/ 使用
-tools/           — 辅助工具（financial_rigor.py 精确计算、twstock_data.py 台股FinMind取数）
-reports/         — 投资研究报告输出
-assets/          — 图片等静态资源
-```
+## The two hard rules
 
-## 报告目录结构
+**1. English only.** Every report, table, note and commit message. Upstream's
+`skills/*.md` are Chinese reference material, not instructions. The English versions in
+`.claude/commands/` are what runs.
 
-所有报告按**公司名**建文件夹，公司相关的所有报告放在对应文件夹内：
+**2. Claude computes, Shivay decides.** Claude may compute a fair value range, list the
+risks, and say that a thesis line has broken. Claude never writes the buy or sell call
+and never fills the Verdict field. A report that ends in "buy this" is wrong.
 
-```
-reports/
-├── AI产业研究/              — AI产业链全景研究（置顶）
-│   ├── AI五层蛋糕-产业全景研究-20260605.md
-│   └── AI五层蛋糕-公众号-20260605.md
-├── 腾讯/                    — 腾讯所有研究报告
-│   ├── 腾讯-research-20260408.md
-│   ├── 腾讯-earnings-2025Q4.md
-│   ├── 腾讯-management-20260409.md
-│   └── 腾讯-thesis.md
-├── 拼多多/                  — 拼多多所有研究报告
-├── 泡泡玛特/                — 泡泡玛特所有研究报告
-├── 核电-industry-20260409.md — 行业报告放根目录
-├── AI算力-funnel-20260509.md  — 漏斗筛选报告放根目录
-├── AI-轮动判断-20260509.md    — 主题级综合判断报告放根目录
-├── portfolio-latest.md       — 组合报告放根目录
-└── 多公司对比-checklist-20260408.md — 多公司报告放根目录
-```
+---
 
-## 报告命名规范
+## Where things live
 
-| Skill | 文件命名格式 | 示例 |
-|------|---------|------|
-| /investment-team | `{公司名}/` 目录内含4个视角+最终报告 | `reports/拼多多/最终报告.md` |
-| /investment-research | `{公司名}-research-{YYYYMMDD}.md` | `reports/腾讯/腾讯-research-20260408.md` |
-| /investment-checklist | `{公司名}-checklist-{YYYYMMDD}.md` | `reports/腾讯/腾讯-checklist-20260408.md` |
-| /industry-research | `{行业名}-industry-{YYYYMMDD}.md`（根目录） | `reports/核电-industry-20260409.md` |
-| /industry-funnel | `{行业名}-funnel-{YYYYMMDD}.md`（根目录） | `reports/AI算力-funnel-20260509.md` |
-| /private-company-research | `{公司名}-private-{YYYYMMDD}.md` | `reports/字节跳动/字节跳动-private-20260408.md` |
-| /earnings-review | `{公司名}-earnings-{期间}.md` | `reports/腾讯/腾讯-earnings-2025Q4.md` |
-| /earnings-team | `{公司名}/` 目录内含4个大师视角+研究底稿+公众号文章+读者评审 | `reports/腾讯/腾讯-earnings-2025Q4.md`（公众号定稿） |
-| /thesis-tracker | `{公司名}-thesis.md`（长期维护） | `reports/腾讯/腾讯-thesis.md` |
-| /portfolio-review | `portfolio-latest.md`（根目录，持续更新） | `reports/portfolio-latest.md` |
-| /management-deep-dive | `{公司名}-management-{YYYYMMDD}.md` | `reports/腾讯/腾讯-management-20260409.md` |
+| What | Where |
+|---|---|
+| The English method | `.claude/commands/*.md` |
+| Research reports | `reports/IN/<SYMBOL>/research-<YYYYMMDD>.md` |
+| Pre-buy checklists | `reports/IN/<SYMBOL>/checklist-<YYYYMMDD>.md` |
+| Thesis, one per holding, updated forever | `reports/IN/<SYMBOL>/thesis.md` |
+| Sector screens | `reports/IN/_screens/<sector>-<YYYYMMDD>.md` |
+| Weekly portfolio checks | `reports/IN/_checks/<YYYYMMDD>.md` |
+| Custom sector themes | `data/themes-in.json` |
+| Downloaded pages, caches, tokens | `local/` — gitignored, never committed |
+| What I own, what I decided, when the next check is due | **Notion**, not here |
 
-## /investment-team 文件结构
+Everything of mine goes under `reports/IN/`, which is registered in
+`reports/_index/config.json` under `skip_dirs`. Upstream's `reports/`, its live-record
+and screening folders are theirs — never write into them. This is what keeps
+`git pull upstream main` clean.
 
-```
-reports/{公司名}/
-├── README.md                         — 研究框架概览+核心结论
-├── 01-商业模式分析-段永平视角.md
-├── 02-财务估值分析-巴菲特视角.md
-├── 03-行业竞争分析-芒格视角.md
-├── 04-风险管理层评估-李录视角.md
-└── 最终报告.md                       — Team Lead 综合报告
-```
+Do not run `tools/reports_index.py`. It indexes upstream's Chinese reports and ignores
+mine. It already reports itself as stale on a fresh clone; that is upstream's state, not
+a signal about this fork.
 
-## 投研分析核心原则（最高优先级）
+---
 
-- **客观、客观、客观**——所有投研分析必须基于事实和数据，严禁主观臆断
-- 严格区分"事实"与"观点"：事实用数据支撑，观点必须明确标注为"观点"或"推测"
-- **不预设立场**：不预设看多或看空，先摆数据、再推逻辑、最后得结论。结论必须从数据中自然推出
-- 禁止使用"我认为"、"我觉得"、"显然"等主观表述，改用"数据显示"、"证据表明"、"根据XX来源"
-- **呈现正反两面**：每个核心判断都必须附带反面论据（"但另一方面..."），让读者自己权衡
-- 对不确定的事情诚实说"不确定"或"数据不足"，不要用推测填充确定性
-- 所有skill（investment-team、investment-research、earnings-review等）在执行时都必须遵守以上原则
+## Indian data sources
 
-## 报告语言与风格
+Every number needs **two independent sources**. A gap over 1% goes into the report, not
+smoothed over.
 
-- 所有报告使用**中文**
-- 风格：直接、犀利、不说废话
-- 数据必须标注来源，关键数据至少2个来源交叉验证
-- 估计值必须注明"估计"
-- 评分使用★符号（★1-5），不含半星
-- 穿插巴菲特/芒格/段永平/李录的语录点评
+| Rank | Source | What it gives | How |
+|---|---|---|---|
+| 1 | **NSE bhavcopy** | official daily close, volume, delivery % for every stock | `india_data.py bhavcopy` |
+| 2 | **Screener.in** | 12 years of P&L, balance sheet, cash flow, ratios, shareholding | `india_data.py screener` |
+| 3 | **stockanalysis.com** | second source for price, market cap, PE, dividend | `india_data.py crosscheck` |
+| 4 | **BSE filings and annual report PDFs** | the primary document | links from `screener --only documents` |
+| 5 | **NSE Nifty 500 constituent file** | the sector universe with official industry tags | `india_data.py universe` |
 
-## GitHub 操作
+Rules that came out of testing these, not from guessing:
 
-- 本地克隆路径：`~/ai-berkshire/`
-- 远程仓库：`https://github.com/xbtlin/ai-berkshire.git`
-- 推送前先 `git pull --rebase origin main`（远程经常有新提交）
-- commit message 用中文，描述清楚改了什么
-- 不要推送中间过程文件（如 data_collection.md），只推最终报告
+- `nseindia.com` API endpoints return 403 to scripts, even with cookie priming. Do not
+  try. The archive host `nsearchives.nseindia.com` works.
+- The NSE and BSE endpoints **only answer an Indian IP**. They work on this laptop and
+  fail from a cloud sandbox. That is why this system runs locally.
+- Screener's consolidated page is the default. Use `--standalone` for a holding company
+  or a bank, where consolidated hides the picture.
+- The annual report beats every website. When two sites disagree, open the PDF.
 
-## 常用命令
+### Units
+
+₹ crore is the working unit for company money. 1 crore = 10,000,000. Sources that print
+T/B/M must be converted before comparing — `crosscheck` already does this. No bare
+number goes into a report without its unit.
+
+---
+
+## The tools, and where they are not optional
+
+No valuation number enters a report from the model's head.
+
+| Tool | Use it for | Mandatory in |
+|---|---|---|
+| `tools/india_data.py` | prices, fundamentals, universe, two-source check | every command |
+| `tools/financial_rigor.py` | market cap identity, PE/PB/ROE/FCF yield, three-scenario | `/stock-research` |
+| `tools/terminal_value.py` | ten-year IRR, terminal PE, the three hard constraints | any report quoting a 10-year return |
+| `tools/report_audit.py` | 15% re-sample of the finished report | `/stock-research`, `/stock-screen` |
+
+`financial_rigor.py` and `terminal_value.py` print Chinese labels. Their **numbers** go
+into the report; translate the labels.
+
+### Discount rate for Indian companies
+
+`terminal_value.py` in this fork carries an **INR band**, added here because upstream
+only had CNY, USD and HKD, and Indian rates fail all three.
+
+| Input | Band | Where it comes from |
+|---|---|---|
+| **r**, cost of capital | 11%-14%, use **12%** | floor = 10-year G-Sec 7.05% + mature-market premium 4.23%. Ceiling = 7.05% + Damodaran's full India ERP 7.08%, which double-counts country risk on purpose so the ceiling stays conservative |
+| **g**, perpetual growth | **at most 5%** | RBI's 4% inflation target plus about 1 point of real growth |
+| **r - g** | **at least 5 percentage points** | a narrower denominator makes the answer a function of g, not of the business |
+| **rf**, risk-free | **7.05%** | India 10-year G-Sec, 21 Sep 2026 |
+
+Sources: India 10Y G-Sec 7.05% on 2026-09-21; Damodaran country risk premiums,
+5 January 2026 vintage — India total ERP 7.08%, country risk premium 2.85%, so the
+mature-market premium is 4.23%.
+
+Run the audit with `--currency INR`:
 
 ```bash
-# 推送报告到GitHub
-cd ~/ai-berkshire
-python3 tools/reports_index.py          # 先刷新研究索引（必做）
-git add reports/xxx.md reports/README.md reports/index.json README.md
-git commit -m "添加xxx报告"
-git pull --rebase origin main
-git push origin main
+python3 tools/terminal_value.py audit --currency INR --r 0.12 --roic <roic> \
+  --g 0.03,0.04,0.05 --rf 0.0705 --beta 1.0
 ```
+
+**Re-check the G-Sec yield before any report that quotes a ten-year return.** It moves.
+If it has moved more than about half a point from 7.05%, update `RF["INR"]` and the band
+in `tools/terminal_value.py`, and say in the report which yield was used.
+
+`g` does not move when `r` moves. `g` is a view on the economy after the terminal year;
+`r` is the return being demanded. Sensitivity tests move `r` only.
+
+---
+
+## Thresholds Shivay decided
+
+Everything else in the method came from upstream. These two were open questions the
+first two screens hit, and they are settled. A screen must use these numbers, not pick
+its own.
+
+### A pledge is not a stake sale
+
+**Decided 22 September 2026.**
+
+| What | Treatment |
+|---|---|
+| Promoter pledge above zero | **hard fail.** The company is eliminated |
+| Promoter stake falling with no stated reason | **a flag.** The name survives, and the deep read has to explain the sale |
+
+The two are different things and the first version of check 8 wrongly treated them
+alike. A pledge is a lien — a lender can force a sale nobody at the company controls,
+which is what made Ramco Cements a red line on 22 Sep 2026. A stake sold to institutions
+with control retained is supply, not a lien. Treating a Page or a KPR Mill block deal the
+same as Ramco's pledged 9.46% would eliminate good businesses for the wrong reason.
+
+A flag is not nothing. It stays on the row, and a deep read that cannot explain the sale
+must say so.
+
+### The ROE bar is 10% for asset-heavy, 8% for everything else
+
+**Decided 22 September 2026.**
+
+| Kind of business | Ten-year average ROE below this eliminates |
+|---|---|
+| Asset-heavy — textiles, cement, metals, power, paper, sugar | **10%** |
+| Everything else | **8%** |
+
+Upstream's single 8% bar lets an asset-heavy business through on a number that, in a
+capital-hungry sector, means it is destroying value. The screen was already relaxing the
+bar for these sectors; it was choosing the relaxed number itself each run, which is how
+two screens stop being comparable.
+
+---
+
+## House rules that override any analysis
+
+- Never F&O, never intraday, never the SME board.
+- My employer's shares stay out of new buying.
+- Free data sources only.
+- Never invent a number to fill a gap. Write "NA" and list what would answer it.
+- A report is not finished until `report_audit.py` returns a pass.
+- Credentials never get typed into a report. They live in Notion Documents.
+
+---
+
+## Notion is the other half
+
+This repo holds the research. Notion holds the state — what I own, what I decided, and
+when the next check is due. Nothing is written in both places.
+
+The three commands write to Notion themselves, through the Notion tools, and only ever
+to one table:
+
+**Companies** — `collection://c44ceb7d-fae7-4ae9-a50f-395b63b62730`
+
+| Command | May write |
+|---|---|
+| `/stock-screen` | one new row per survivor: Name, Symbol, Sector, Info grade, Status `Candidate`, Report file. A company that already has a row is skipped — never a second row, never an overwrite |
+| `/stock-research` | that company's row: every line of the report's Notion block. Status becomes `Researched` only when the row is new, `Candidate` or `Queued`; any other Status is left exactly as it is. Create the row if the company has none |
+| `/stock-check` | each checked row: Thesis health, Next check, and a Notes line after a full check |
+
+Never, from any command:
+
+- **Verdict.** Shivay fills it.
+- **Status `Watching`, `Held`, `Exited` or `Rejected`.** Those are Shivay's calls.
+- **Any other page or table** — not Transactions, not Holdings Snapshot, not Items, not a
+  comment.
+
+How to write:
+
+1. **Read the row first.** Find it by `Symbol`. Two rows with the same Symbol is an error
+   to report, not a choice to make.
+2. **Notes are only ever added to.** Put a new paragraph at the end, starting with the
+   date, and keep every word above it. Notes hold long research notes, and any property
+   write replaces the whole field. So read the current Notes in `rows` mode first — SQL
+   mode can drop formatting and links — then write the old text plus the new paragraph.
+3. **Dates** go in as `date:<Column>:start` with a `YYYY-MM-DD` value.
+4. **Use the exact option names** for Status, Sector, Info grade and Checklist, as the
+   table defines them.
+
+**The receipt.** Every report still ends with its Notion block — exactly the fields
+written, and nothing more. Directly above it, one line:
+
+- `Written to Notion ✔ <YYYY-MM-DD HH:MM IST>`, or
+- `Notion write failed: <the error> — paste this block by hand`
+
+A failed write never stops the report from being written. The block is what makes the
+failure recoverable.
+
+---
+
+## Pulling upstream
 
 ```bash
-# 只检查索引是否过期，不写盘（CI 也跑这条）
-python3 tools/reports_index.py --check
+git fetch upstream
+git merge upstream/main
 ```
 
-## 注意事项
+`CLAUDE.md` is the only file that conflicts by design, because this one replaced theirs
+(theirs is kept at `docs/CLAUDE.upstream.zh.md`). Keep mine:
 
-- 市值必须手算校验：股价 × 总股本，与报告市值对比
-- 货币单位要明确（港币/人民币/美元/新台币），防止混淆
-- PE/ROE等指标用 tools/financial_rigor.py 精确计算
-- 台股数据用 tools/twstock_data.py（FinMind）获取，并按 skills/financial-data.md 台股章节交叉验证
-- 报告写完后主动询问是否推送到GitHub
-- **推送前必须跑 `python3 tools/reports_index.py` 刷新索引**，否则 CI 的索引校验会失败
-- 新报告文件名带 `-YYYYMMDD` 后缀、正文首行写 `# 标题`，索引即可自动识别；
-  需要覆盖时在文件头加 YAML front-matter（`title` / `date` / `type`），
-  规范见 `reports/_index/README.md`
-- 新建的**专题目录或筛选池目录**要登记进 `reports/_index/config.json`，否则会被当成公司
+```bash
+git checkout --ours CLAUDE.md && git add CLAUDE.md
+```
+
+Their `skills/` will change. That is useful — read the diff, and fold anything worth
+having into `.claude/commands/` in English.

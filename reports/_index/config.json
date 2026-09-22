@@ -190,7 +190,8 @@
   ],
   "skip_dirs": [
     "_index",
-    "__pycache__"
+    "__pycache__",
+    "IN"
   ],
   "skip_files": [
     "README.md",

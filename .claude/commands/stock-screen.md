@@ -174,8 +174,9 @@ conclusions are provisional.
 Every figure's source, grouped: NSE, Screener, stockanalysis, annual reports, news.
 
 ## Notion block
-For each survivor, one line ready to paste into the Companies database:
-SYMBOL | Name | NSE industry | info grade | status Candidate | screen file path
+<Written to Notion ✔ <YYYY-MM-DD HH:MM IST> | Notion write failed: <the error> — paste these lines by hand>
+For each survivor, one line — skipped ones marked "already in Companies, skipped":
+SYMBOL | Name | Sector | info grade | status Candidate | screen file path
 ```
 
 ## Step 6 — audit before it counts
@@ -192,6 +193,13 @@ python3 tools/report_audit.py verdict --results '<filled JSON>' --report <file>.
 
 A fail means fix the number and sample again. A screen that has not passed the audit is
 a draft, and the report must say so at the top.
+
+## Step 7 — write the survivors to Notion
+
+One new Companies row per survivor, following `CLAUDE.md` § Notion is the other half:
+Name, Symbol, Sector, Info grade, Status `Candidate`, Report file. A company that already
+has a row is skipped and left exactly as it is. Then put the receipt line above the
+Notion block.
 
 ## Biases to fight, out loud
 

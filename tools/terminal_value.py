@@ -108,6 +108,7 @@ BASE_R = 0.10  # 预设 irr10 对应的折现率
 RF = {
     "CNY": 0.0170,  # 中国 10 年期国债，2026-08-07
     "USD": 0.0470,  # 美国 10 年期国债，2026-08-14
+    "INR": 0.0705,  # India 10-year G-Sec, 7.05% on 2026-09-21 (OTC interbank quotes)
 }
 
 LABELS = ("悲观", "基准", "乐观")
@@ -128,6 +129,16 @@ CURRENCY_BANDS = {
                 note="美国10年期国债 4.70% + 中国总ERP 5.18%（含1.01%国别溢价）"),
     "HKD": dict(r=(0.09, 0.115), g_max=0.040, rf=0.0470,
                 note="港币与美元挂钩，口径同 USD"),
+    # India band, added in this fork. Same construction as the others:
+    #   lower  = observed risk-free + mature-market premium = 7.05% + 4.23% = 11.3% -> 11.0%
+    #   upper  = observed risk-free + Damodaran total India ERP = 7.05% + 7.08% = 14.1% -> 14.0%
+    #            (the ceiling double-counts country risk on purpose, so it stays conservative)
+    #   g_max  = RBI inflation target 4% + about 1pct real = 5.0%
+    # Sources: India 10Y G-Sec 7.05% on 2026-09-21; Damodaran country premiums,
+    # 5 Jan 2026 vintage — India ERP 7.08%, country risk premium 2.85%,
+    # so the mature-market premium is 4.23%.
+    "INR": dict(r=(0.11, 0.14), g_max=0.050, rf=0.0705,
+                note="India 10Y G-Sec 7.05% + mature ERP 4.23% (floor) to total India ERP 7.08% (ceiling)"),
 }
 
 # 离散风险的合法归属。写进折现率或 beta 一律打回——抬 r 三个百分点对第 10 年现金流的
