@@ -86,7 +86,8 @@ exemption and its evidence into the report.
 
 | Sector | Skip | Use instead |
 |---|---|---|
-| Banks, NBFCs, insurers | check 3 | net interest margin, gross NPA trend, capital adequacy, provision cover |
+| Lenders — banks and NBFCs | checks 2, 3 and 5 | capital adequacy at or above the legal minimum (15% for an NBFC, 11.5% for a bank), and gross NPA below 3% and not rising two years running (decided, see `CLAUDE.md`) |
+| Insurers | check 3 | net interest margin, gross NPA trend, capital adequacy, provision cover |
 | REITs and InvITs | check 1 | ROE on core operating profit, distribution yield and cover |
 | Cyclicals — metals, cement, sugar, chemicals | single-year figures | full-cycle averages covering one peak and one trough |
 | Listed under 5 years | nothing | use all available years and label it "short data window" |
@@ -99,7 +100,7 @@ carry the company forward flagged.
 | # | Check | Pass | Relax when |
 |---|---|---|---|
 | 1 | Valuation | PE reasonable against its own 10-year range and its peers | high grower, PEG below 1.5 |
-| 2 | ROE | above 15%, or a clear 3-year improvement | asset-heavy business |
+| 2 | ROE | above 15%, or a clear 3-year improvement | asset-heavy business: average of the **last three years** above 10%, or a clear 3-year rise (decided, see `CLAUDE.md`) |
 | 3 | Cash flow | operating cash flow positive and above 70% of net profit | — |
 | 4 | Debt | debt to equity below 0.6 | utilities, power and infra up to 1.0 |
 | 5 | Moat | 3 stars or better out of 5 | — |
@@ -107,12 +108,30 @@ carry the company forward flagged.
 Moat types: brand and pricing power, switching cost, network effect, scale and cost
 advantage, licence or regulatory or resource barrier.
 
+**Lenders — banks and NBFCs — swap two checks** (decided, see `CLAUDE.md`). Skip check 3
+(cash flow) and check 4 (debt): a lender's new loans run out through operating cash flow,
+and borrowing to lend is its business. Use instead: **net interest margin** positive and
+not falling two years running, and **provision cover** at least 60%. The count is still
+out of 5, so the keep rule applies unchanged.
+
+**Where the lender numbers come from.** Free Screener does not carry them: capital
+adequacy is behind its paid plan, and gross NPA is often blank. Use **standalone**
+figures, from:
+- capital adequacy, gross NPA and provision cover — the latest credit-rating report
+  (CRISIL, CARE, ICRA or India Ratings; the links are in the Screener documents list)
+- net interest margin — the company's latest quarterly investor presentation or results
+  press release, because rating reports rarely print it as a number
+
+Write the source and its as-of date next to every figure.
+
 **Where this table says "relax" without a number, pick one, and put it in the report as
 its own line: the number used, and that it is an assumption rather than a decided rule.**
 Two screens cannot be compared if each quietly chose a different bar. If the same relaxed
 bar gets used twice, it should stop being an assumption and go into `CLAUDE.md`.
 
-Keep rule: 5 of 5 pass, keep. 4 pass and 1 close, keep and mark amber. Under 4, drop
+Keep rule: 5 of 5 pass, keep. 4 pass, keep with a ⚠ yellow flag, whether the fifth
+failed narrowly or clearly — write which check failed and by how much next to the name
+(see `CLAUDE.md`). Under 4, drop
 with the reason written down. If more than 12 survive, raise the moat bar to 4 stars and
 run it again.
 

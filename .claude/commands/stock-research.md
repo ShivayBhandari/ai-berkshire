@@ -172,6 +172,12 @@ Then: could a competitor with ₹1,000 crore copy this in three years?
 
 **Hard stop:** a real integrity problem is a 1 star and ends the run.
 
+**An allegation that was never decided on the facts is not Claude's to judge** — for
+example fraud or fake documents, where the case was dropped on a technicality such as a
+time limit. Carry on with the research, mark gate 4 "⚠ integrity question — Shivay
+decides", say what was alleged and why it was dropped, and put it first in the report's
+list of things waiting for Shivay.
+
 For a PSU, add: who sets the price, and what a policy change does to the earnings.
 
 ## Gate 5 — is the price low enough?

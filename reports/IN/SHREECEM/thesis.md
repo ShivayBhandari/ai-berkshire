@@ -1,5 +1,7 @@
 # Shree Cement (SHREECEM) — thesis
 
+> **Decision, 23 Sep 2026 — fails gate 4, integrity.** Shivay decided the June 2023 income-tax allegation (about ₹7,000 cr of section 80IA deductions said to rest on fake bills) counts as an integrity problem. The High Court quashed the notices as time-barred, not on the merits. Under the method, a real integrity problem ends the case at the gates, whatever the rest of this report says. Reopen only if the matter is settled in Shree's favour on the merits.
+
 **Written:** 2026-09-23, from `reports/IN/SHREECEM/research-20260923.md`
 **Price on the report date:** ₹22,200 (NSE close 22-Sep-2026)
 

@@ -160,6 +160,47 @@ capital-hungry sector, means it is destroying value. The screen was already rela
 bar for these sectors; it was choosing the relaxed number itself each run, which is how
 two screens stop being comparable.
 
+### In step 2, an asset-heavy business is judged on its last three years
+
+**Decided 23 September 2026.**
+
+Step 2's ROE check wants above 15%, or a clear 3-year rise. An asset-heavy business —
+the same list as above — passes instead when **the average of its last three years is
+above 10%**, or its ROE is clearly rising over those three years.
+
+Step 1 already judges the ten-year average. Using the same ten-year bar again in step 2
+would pass every asset-heavy name that reached it, so step 2 looks at the recent years.
+That is what catches a business earning far less now than its long history shows.
+
+### Four of five value checks keeps the name, with a yellow flag
+
+**Decided 23 September 2026.**
+
+| Step 2 value checks passed | Result |
+|---|---|
+| 5 of 5 | kept |
+| 4 of 5, the fifth failed narrowly or clearly | **kept, with a ⚠ yellow flag** and the failed check written next to it |
+| 3 or fewer | dropped, with the reason |
+
+A narrow miss and a clear miss are treated the same, because one failed check is a
+reason to look closer, not to stop looking. Keeping a name costs nothing: it only lands
+in Companies as a Candidate, and a deep read still runs only on names Shivay moves to
+Queued.
+
+### Lenders are judged as lenders
+
+**Decided 23 September 2026.** Banks and NBFCs only; insurers are not covered by this.
+
+| Round | Checks skipped | Checks used instead |
+|---|---|---|
+| Step 1 | 2 (free cash flow), 3 (interest cover), 5 (cash / profit) | capital adequacy at or above the legal minimum — **15%** for an NBFC, **11.5%** for a bank; gross NPA below **3%** and not rising two years running |
+| Step 2 | 3 (cash flow), 4 (debt) | net interest margin positive and not falling two years running; provision cover at least **60%** |
+
+A lender's new loans leave through operating cash flow, and borrowing to lend is the
+business, so the cash and debt checks fail every growing lender whatever its health. The
+15% and 11.5% are RBI's own minimums. The 3% and 60% are common market benchmarks, not
+rules.
+
 ---
 
 ## House rules that override any analysis
