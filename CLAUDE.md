@@ -14,9 +14,30 @@ The method is theirs. The market, the data sources and the language are mine.
 `skills/*.md` are Chinese reference material, not instructions. The English versions in
 `.claude/commands/` are what runs.
 
-**2. Claude computes, Shivay decides.** Claude may compute a fair value range, list the
-risks, and say that a thesis line has broken. Claude never writes the buy or sell call
-and never fills the Verdict field. A report that ends in "buy this" is wrong.
+**2. Claude recommends, Shivay decides.** Claude computes the fair value range, lists the
+risks, says when a thesis line breaks, and **recommends a verdict**. Shivay sets the
+Verdict field, and decides whether to buy, how much, and when. Claude never fills the
+Verdict field, never names an amount, and never times an order.
+
+Every recommendation carries five things, and is not a recommendation without them:
+
+| Part | What it says |
+|---|---|
+| **The call** | Pass, Conditional, Grey or Reject, in one line |
+| **Against the index fund** | the base-case 10-year return at today's price, against **12%** — the same required return the valuation uses, standing for a Nifty 50 index fund. Below 12%, the index fund is the better bet on the method's own numbers, and the recommendation says so plainly. The strict-model return (the perpetual-growth exit PE from step 7) is always shown next to it |
+| **Buy-below price** | for Conditional: the price at which the base-case 10-year return reaches 12% |
+| **Confidence** | high, medium or low, and the one or two facts that would change it |
+| **Fit** | what already owned carries the same risk — the same sector, the same single customer, the government |
+
+**The base case, decided 23 September 2026.** Profit grows at the three-year base-case
+rate from step 7. In year 10 the market pays **the lower of today's PE and the stock's own
+ten-year median PE** — never more than buyers pay now, or than they usually have. The
+strict model is shown beside it because it assumes every business ends up valued like a
+slow one, which almost nothing passes; today's PE alone would make an expensive stock
+look fine.
+
+The recommendation is a reasoned view, not a forecast. It exists because weighing all of
+this at once, the same way every time, is the part a person finds hardest to do alone.
 
 ---
 

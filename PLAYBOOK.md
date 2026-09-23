@@ -96,13 +96,16 @@ and the block to paste by hand. The rules for what a command may write are in
 
 | Claude writes | Shivay writes |
 |---|---|
-| the fair value range, computed by the tools | the verdict |
+| the fair value range, computed by the tools | the Verdict field — the final call |
 | the thesis lines, drafted | the approval of those lines |
-| thesis health out of 10 | buy, add, hold, sell |
+| thesis health out of 10 | whether to buy, add, hold or sell |
 | "this line has broken", with the evidence | the amount and the timing |
 | how far below its range a price sits | which candidate gets a deep read |
+| **a recommended verdict, compared with a Nifty 50 index fund** | |
 
-A report that ends in "buy this" is broken and gets rewritten.
+A recommendation always says how it compares with putting the same money in an index
+fund, how confident it is, and what would change it. The rules are in `CLAUDE.md`,
+principle 2.
 
 ---
 

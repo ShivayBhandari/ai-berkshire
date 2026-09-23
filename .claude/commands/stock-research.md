@@ -372,8 +372,9 @@ each end.
 
 Then, and this is the boundary:
 
-> **This report does not say buy or sell.** It gives the range, the sell conditions, and
-> what would break them. The call is Shivay's.
+> **This report recommends; Shivay decides.** It gives the range, the sell conditions, what
+> would break them, and a recommended verdict in step 14. The Verdict field, the amount and
+> the timing are Shivay's.
 
 ---
 
@@ -454,6 +455,32 @@ in the research report what changed from the old version.
 
 ---
 
+---
+
+# Part 4 — the recommendation
+
+## Step 14 — recommend a verdict
+
+Follow `CLAUDE.md`, principle 2. Five parts, all required:
+
+1. **The call** — Pass, Conditional, Grey or Reject, in one line, with the reasons. A
+   failed gate, or five sentences that cannot be completed, means it cannot be Pass.
+2. **Against the index fund** — the base-case 10-year return at today's price. Year-10
+   profit grows at the three-year base-case rate from step 7; the exit PE is the lower of
+   today's PE and the stock's own ten-year median PE (`CLAUDE.md`, principle 2):
+   ```bash
+   python3 tools/terminal_value.py irr --profit <base-case year-10 profit> \
+     --mcap <market cap today> --pe <lower of today's and median PE> --years 10 --payout <yield minus dilution>
+   ```
+   Set it against 12%, and show the step 7 strict-model return beside it. Below 12%, say
+   plainly that a Nifty 50 index fund is the better bet on these numbers.
+3. **Buy-below price** — for Conditional, the price at which that return reaches 12%.
+4. **Confidence** — high, medium or low, and the one or two facts that would change it.
+5. **Fit** — anything Shivay already holds or watches with the same risk: the same sector,
+   the same single customer, the government as owner or buyer.
+
+Never an amount, never a timing, and never the Verdict field.
+
 ## Output rules
 
 1. Every figure has a source and a date. An estimate is labelled "estimate".
@@ -467,8 +494,8 @@ in the research report what changed from the old version.
 6. A C-grade company ends with a list of questions only first-hand work can answer:
    store visits, using the product, talking to a distributor.
 7. Valuation is a range, never a point.
-8. No buy or sell instruction anywhere. The gates say whether they were passed; the buy
-   is Shivay's.
+8. A recommended verdict in step 14, and nowhere else. Never an amount, a timing, or a
+   value in the Verdict field.
 
 ## The audit gate
 
@@ -513,7 +540,7 @@ Thesis lines:      <the assumptions, one per line, or blank if stopped at the ga
 Red lines:         <the red lines, or the one that triggered at the gates>
 Last researched:   <YYYY-MM-DD>
 Report file:       reports/IN/<SYMBOL>/research-<YYYYMMDD>.md
-Notes (added):     <YYYY-MM-DD> research — gates <N>/6 · audit <pass | not run | skipped, stopped at the gates>
+Notes (added):     <YYYY-MM-DD> research — gates <N>/6 · audit <pass | not run | skipped, stopped at the gates> · recommends <verdict>, <buy below ₹X if Conditional> · 10-year base case <n>% vs 12% index
 Verdict:           (Shivay fills this)
 ```
 

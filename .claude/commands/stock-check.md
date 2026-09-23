@@ -241,8 +241,10 @@ Order them by how far below the range the price sits. That ordering is arithmeti
 Say plainly which one is furthest below its range and why the gap exists if the reason
 is known — a result, a sector move, an index exclusion. Then stop.
 
-**No buy, add, hold or sell instruction, and no capital figure.** The report gives the
-prices, the ranges, the gaps and the health scores. How much money is free is decided by
+**A recommendation, never an amount.** For each holding, and for each name on the buy
+list, give a one-line recommendation — hold, review, or sell because a thesis line broke;
+buy below a price, or wait — each with its comparison against a Nifty 50 index fund and
+its confidence, as `CLAUDE.md` principle 2 sets out. How much money is free is decided by
 Shivay on the day, so the check never reads, prints or suggests an amount. The action,
 the amount and the timing are Shivay's.
 
