@@ -44,3 +44,7 @@ local/
 
 # machine-local permissions
 .claude/settings.local.json
+
+# weekly check files list holdings with quantity and buy price; this fork is public
+reports/IN/_checks/*
+!reports/IN/_checks/.gitkeep
