@@ -143,9 +143,10 @@ CURRENCY_BANDS = {
 
 # 离散风险的合法归属。写进折现率或 beta 一律打回——抬 r 三个百分点对第 10 年现金流的
 # 惩罚是第 1 年的 2.6 倍，而退市/断供是大致均匀甚至前置的年度危害率，会把时间分布搞反。
-RISK_PLACEMENT_OK = {"情景", "尾部档", "概率"}
+# The English words are the ones .claude/commands/stock-research.md passes.
+RISK_PLACEMENT_OK = {"情景", "尾部档", "概率", "scenario", "tail", "probability"}
 RISK_PLACEMENT_BAD = {"折现率", "r", "beta", "β"}
-RISK_PLACEMENT_WARN = {"未建模"}
+RISK_PLACEMENT_WARN = {"未建模", "unmodelled"}
 
 # ---------------------------------------------------------------------------
 # 核心计算

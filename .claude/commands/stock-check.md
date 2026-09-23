@@ -43,6 +43,10 @@ python3 tools/india_data.py bhavcopy
 One download covers every holding. Take the close, the volume and the delivery
 percentage from it. Do not fetch prices one stock at a time.
 
+If a Held or Watching company shows `BE` in the series column, NSE has put it under
+surveillance. Say so under Needs attention, with the date it was first seen in BE if an
+earlier check file shows it in EQ.
+
 ## Step 3 — the table
 
 | Holding | Qty | Buy price | Close | Gain | Fair value range | Where the price sits | Thesis |

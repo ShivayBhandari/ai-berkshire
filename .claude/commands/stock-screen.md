@@ -18,6 +18,10 @@ python3 tools/india_data.py universe --theme "<theme>"
 
 The Nifty 500 file is the universe. It is official NSE data with official industry tags.
 
+**A name marked ⚠ "BE series: under exchange watch" is screened like any other.** NSE has
+put it under surveillance, usually after unusual price or trading activity. That is a
+caution, not a fault. Carry the ⚠ mark next to its name in every table of the report.
+
 **A theme always wins over an NSE industry of the same name.** Several sector names exist
 as both — Textiles, Power, Capital markets. The theme is the wider universe, because most
 of a sector often sits below the Nifty 500 cut. Run `universe --list-sectors` first, and if

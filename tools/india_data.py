@@ -42,6 +42,12 @@ BSE_QUOTE_URL = (
     "?scripcode={scripcode}&flag=0&fromdate=&todate=&seriesid="
 )
 
+# BE is trade-for-trade: NSE moves a share there while it is under surveillance. It is
+# still a mainboard share a long-term buyer can hold, so it is kept and marked rather than
+# silently dropped. BZ (listing-rule breach) and the SME series SM/ST stay out.
+MAINBOARD_SERIES = ("EQ", "BE")
+WATCH_NOTE = "BE series: under exchange watch (trade-for-trade)"
+
 
 def fetch(url, cache_hours=6, referer=None):
     os.makedirs(CACHE_DIR, exist_ok=True)
@@ -124,6 +130,9 @@ def command_universe(args):
             print(f"{len(symbols):4d}  {theme}")
         return
 
+    traded_on, bhav_rows = load_bhavcopy()
+    series_by_symbol = {row["SYMBOL"]: row["SERIES"] for row in bhav_rows}
+
     selected = universe
     label = "Nifty 500"
     source_note = "NSE index constituent file"
@@ -154,12 +163,11 @@ def command_universe(args):
 
         # A theme is often built around companies too small for the Nifty 500 — textiles
         # and defence especially. Resolve those against the bhavcopy instead of dropping
-        # them. Filtering on SERIES == EQ there also keeps the SME board out, which the
-        # house rules ban anyway.
+        # them. The bhavcopy holds only the mainboard series, so the SME board stays out,
+        # which the house rules ban anyway.
         missing = symbols - {row["symbol"] for row in selected}
         if missing:
-            traded_on, bhav_rows = load_bhavcopy()
-            mainboard = {row["SYMBOL"] for row in bhav_rows}
+            mainboard = set(series_by_symbol)
             for symbol in sorted(missing & mainboard):
                 selected.append({
                     "symbol": symbol,
@@ -173,10 +181,15 @@ def command_universe(args):
             source_note = (f"NSE index constituent file, plus the "
                            f"{traded_on:%d-%b-%Y} bhavcopy for names outside it")
 
+    watched = sorted(row["symbol"] for row in selected
+                     if series_by_symbol.get(row["symbol"]) == "BE")
     print(f"# {label} — {len(selected)} companies — source: {source_note}")
-    print("symbol,name,industry,isin")
+    if watched:
+        print(f"# ⚠ {WATCH_NOTE}: {', '.join(watched)}")
+    print("symbol,name,industry,isin,watch")
     for row in sorted(selected, key=lambda item: item["symbol"]):
-        print(f"{row['symbol']},\"{row['name']}\",{row['industry']},{row['isin']}")
+        watch = WATCH_NOTE if row["symbol"] in watched else ""
+        print(f"{row['symbol']},\"{row['name']}\",{row['industry']},{row['isin']},{watch}")
 
 
 # ---------------------------------------------------------------- prices
@@ -198,27 +211,30 @@ def load_bhavcopy(day=None):
             {key.strip(): (value or "").strip() for key, value in row.items() if key}
             for row in rows
         ]
-        return candidate, [row for row in cleaned if row.get("SERIES") == "EQ"]
+        return candidate, [row for row in cleaned if row.get("SERIES") in MAINBOARD_SERIES]
     raise SystemExit("No NSE bhavcopy found in the last 5 days")
 
 
 def command_bhavcopy(args):
     day = datetime.strptime(args.date, "%d%m%Y").date() if args.date else None
     traded_on, rows = load_bhavcopy(day)
-    print(f"# NSE full bhavcopy {traded_on:%d-%b-%Y} — {len(rows)} EQ series rows")
+    print(f"# NSE full bhavcopy {traded_on:%d-%b-%Y} — {len(rows)} EQ and BE series rows")
     if args.symbol:
         wanted = args.symbol.upper()
         match = next((row for row in rows if row["SYMBOL"] == wanted), None)
         if match is None:
             sys.exit(f"{wanted} not in the {traded_on:%d-%b-%Y} bhavcopy")
+        if match["SERIES"] == "BE":
+            print(f"# ⚠ {WATCH_NOTE}")
         for key, value in match.items():
             print(f"{key:16s} {value}")
         return
-    print("symbol,prev_close,open,high,low,close,volume,delivery_pct")
+    print("symbol,series,prev_close,open,high,low,close,volume,delivery_pct")
     for row in rows:
         print(
-            f"{row['SYMBOL']},{row['PREV_CLOSE']},{row['OPEN_PRICE']},{row['HIGH_PRICE']},"
-            f"{row['LOW_PRICE']},{row['CLOSE_PRICE']},{row['TTL_TRD_QNTY']},{row['DELIV_PER']}"
+            f"{row['SYMBOL']},{row['SERIES']},{row['PREV_CLOSE']},{row['OPEN_PRICE']},"
+            f"{row['HIGH_PRICE']},{row['LOW_PRICE']},{row['CLOSE_PRICE']},"
+            f"{row['TTL_TRD_QNTY']},{row['DELIV_PER']}"
         )
 
 
@@ -394,6 +410,8 @@ def command_crosscheck(args):
     print(f"# source 1: screener.in  ({screener_link})")
     print(f"# source 2: stockanalysis.com/quote/nse/{symbol}/")
     print(f"# source 3: NSE bhavcopy {traded_on:%d-%b-%Y} (official close)")
+    if bhav and bhav["SERIES"] == "BE":
+        print(f"# ⚠ {WATCH_NOTE}")
 
     comparisons = [
         ("Price", to_decimal(screener.get("Current Price")),
@@ -494,7 +512,7 @@ def build_parser():
                                "ratios shareholding documents")
     screener.set_defaults(handler=command_screener)
 
-    crosscheck = subparsers.add_parser("crosscheck", help="two-source check, flags gaps >1%")
+    crosscheck = subparsers.add_parser("crosscheck", help="two-source check, flags gaps >1%%")
     crosscheck.add_argument("symbol")
     crosscheck.set_defaults(handler=command_crosscheck)
 
