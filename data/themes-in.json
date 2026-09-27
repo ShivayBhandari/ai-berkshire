@@ -43,15 +43,22 @@
   ],
   "Capital markets": [
     "BSE",
-    "CDSL",
-    "KFINTECH",
-    "CAMSBANKING",
-    "ANGELONE",
     "MCX",
+    "IEX",
+    "CDSL",
+    "CAMS",
+    "KFINTECH",
+    "CRISIL",
+    "HDFCAMC",
+    "ICICIAMC",
+    "NAM-INDIA",
+    "UTIAMC",
+    "ABSLAMC",
+    "ANGELONE",
+    "MOTILALOFS",
     "NUVAMA",
     "360ONE",
-    "IIFL",
-    "MOTILALOFS"
+    "ANANDRATHI"
   ],
   "Textiles": [
     "KPRMILL",

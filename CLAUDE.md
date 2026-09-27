@@ -19,13 +19,26 @@ risks, says when a thesis line breaks, and **recommends a verdict**. Shivay sets
 Verdict field, and decides whether to buy, how much, and when. Claude never fills the
 Verdict field, never names an amount, and never times an order.
 
+**Who decides what, decided 27 September 2026.**
+
+| Shivay decides | Claude decides |
+|---|---|
+| which companies get a full study | every method question: which figures to use, how a check is measured, how a scenario is modelled, what bar a relaxed check uses |
+| trust questions — an allegation never decided on the facts | writing each method answer once, as a rule in this file under § Method rules Claude set |
+| the Verdict, and whether, how much and when to buy | keeping those rules the same from one stock to the next |
+
+Claude does not ask Shivay a method question. It picks the answer, writes it down as a
+rule, and uses it the same way every time after. A report says so when one of these rules
+decided its result — for example "this name passed only because of rule X". Shivay can
+overrule any of them; until he does, they stand.
+
 Every recommendation carries five things, and is not a recommendation without them:
 
 | Part | What it says |
 |---|---|
 | **The call** | Pass, Conditional, Grey or Reject, in one line |
 | **Against the index fund** | the base-case 10-year return at today's price, against **12%** — the same required return the valuation uses, standing for a Nifty 50 index fund. Below 12%, the index fund is the better bet on the method's own numbers, and the recommendation says so plainly. The strict-model return (the perpetual-growth exit PE from step 7) is always shown next to it |
-| **Buy-below price** | for Conditional: the price at which the base-case 10-year return reaches 12% |
+| **Buy-below price** | for Conditional: the price at which the base-case 10-year return reaches **13.5%** — the top of the too-close-to-call zone below — with the year-10 PE set by the buy-below rule below. It goes into the Companies row's `Buy below` field |
 | **Confidence** | high, medium or low, and the one or two facts that would change it |
 | **Fit** | what already owned carries the same risk — the same sector, the same single customer, the government |
 
@@ -35,6 +48,25 @@ ten-year median PE** — never more than buyers pay now, or than they usually ha
 strict model is shown beside it because it assumes every business ends up valued like a
 slow one, which almost nothing passes; today's PE alone would make an expensive stock
 look fine.
+
+**The buy-below rule, decided 24 September 2026.** When the buy-below price is worked
+out, the year-10 PE is **the lowest of three: the PE at the buy price, today's PE, and the
+stock's own ten-year median PE**. Buying cheaper never earns credit for the market paying
+a higher multiple later. So when profit growth plus the dividend yield is under 13.5% a
+year, only a much lower price, with a much higher yield, gets the return to 13.5%.
+
+**Too close to call, set 27 September 2026.** A base-case return between **10.5% and
+13.5%** — within 1.5 points of 12% — is too close to call. The whole answer rests on one
+guessed number, the profit growth rate, and moving that guess by 2 points moves the
+return by about 2 points. So inside the zone the recommendation is **"index fund
+instead"**, said plainly, and the call cannot be Pass. Pass needs a base case of at least
+13.5%. Below 10.5% the index fund is clearly better.
+
+| Base-case return at today's price | What the recommendation says |
+|---|---|
+| 13.5% or more | the stock beats the index fund by a margin the growth guess cannot erase |
+| 10.5% to 13.5% | too close to call: index fund instead, and a buy-below price |
+| under 10.5% | the index fund is clearly better, and a buy-below price if one exists |
 
 The recommendation is a reasoned view, not a forecast. It exists because weighing all of
 this at once, the same way every time, is the part a person finds hardest to do alone.
@@ -145,9 +177,8 @@ in `tools/terminal_value.py`, and say in the report which yield was used.
 
 ## Thresholds Shivay decided
 
-Everything else in the method came from upstream. These two were open questions the
-first two screens hit, and they are settled. A screen must use these numbers, not pick
-its own.
+Everything else in the method came from upstream. These were open questions the screens
+hit, and they are settled. A screen must use these rules, not pick its own.
 
 ### A pledge is not a stake sale
 
@@ -222,6 +253,66 @@ business, so the cash and debt checks fail every growing lender whatever its hea
 15% and 11.5% are RBI's own minimums. The 3% and 60% are common market benchmarks, not
 rules.
 
+### Brokers and wealth firms get no rule of their own
+
+**Decided 24 September 2026.** Brokers and wealth managers are screened like any other
+company. The lender rule does not apply to them, even when they have a lending arm.
+
+Their operating cash goes out as margin loans and loans to clients, so they often fail
+checks 2 and 5. That money really leaves the business and carries lending risk, so the
+fail stands. On 24 Sep 2026 Angel One, Motilal Oswal, Nuvama and 360 ONE all failed this
+way. Judged as lenders, at most 360 ONE would have come back, with a gap in its figures.
+
+---
+
+## Method rules Claude set
+
+Set by Claude under § Who decides what. Each one answers a question the screens or
+studies hit, so that two runs stay comparable. Shivay can overrule any of them.
+
+### Which figures a screen uses
+
+**Set 27 September 2026.** Consolidated (the whole group) when Screener has 10 years of
+it. When it has fewer, standalone (the parent company alone) — but only if standalone
+has 10 years and its sales are at least 85% of consolidated sales. Otherwise
+consolidated, labelled "short data window".
+
+Consolidated is the real business. Standalone is only a stand-in for the missing years,
+and only when the parent is nearly the whole group. First used on the 24 Sep 2026
+Capital markets screen (IEX, CAMS, HDFC AMC, Anand Rathi).
+
+### The price check in a screen
+
+**Set 27 September 2026.** Step 2's valuation check passes when **either**:
+
+- the PE is at or below the stock's own ten-year median PE, or
+- PEG is below 1.5.
+
+PEG = PE ÷ yearly profit growth, with two limits:
+
+| Limit | Why |
+|---|---|
+| Use five-year profit growth; use three-year growth instead when the five-year start year was a loss or fell more than 10% on the year before | a bad start year makes growth look bigger than it is |
+| **Growth above 25% a year counts as 25%** | growth that fast almost never lasts. It usually comes from a boom, a low start, or one-off gains |
+
+The peer median PE is shown for context and decides nothing. The 25% cap is new: on the
+24 Sep screen, BSE and MCX passed on PEG from 77% and 43% growth driven by an options
+boom SEBI is cooling. With the cap they fail the price check (PEG 1.9 and 2.2) and stay
+only as 4-of-5 ⚠ names.
+
+### A known one-time hit to profit
+
+**Set 27 September 2026.** When a known event is expected to cut profit once — a new
+regulation, a lost licence, a tariff reset — the base case models it as **one drop in the
+year it takes effect, then growth again** at the business's normal rate. It is not a slow
+fall spread over all ten years. The event also gets its own scenario and probability
+(step 7, constraint 3).
+
+A one-time rule change hits once. Spreading it thinly over ten years says the business
+shrinks forever, which is a different claim. First case: IEX and market coupling, where
+this gives 10.08% a year instead of 2.39%. That is still below 12%, so the call does not
+change.
+
 ---
 
 ## House rules that override any analysis
@@ -232,6 +323,10 @@ rules.
 - Never invent a number to fill a gap. Write "NA" and list what would answer it.
 - A report is not finished until `report_audit.py` returns a pass.
 - Credentials never get typed into a report. They live in Notion Documents.
+- Every report opens with three plain lines, straight under the title, before anything
+  else. Each command says what its three lines are. Write them for someone who knows no
+  market words: no PE, ROE, NIM or CRAR, say what the number means instead. They must be
+  enough on their own: Shivay reads past them only to dig in.
 
 ---
 

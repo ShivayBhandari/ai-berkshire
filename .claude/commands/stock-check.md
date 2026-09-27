@@ -49,11 +49,13 @@ earlier check file shows it in EQ.
 
 ## Step 3 — the table
 
-| Holding | Qty | Buy price | Close | Gain | Fair value range | Where the price sits | Thesis |
-|---|---|---|---|---|---|---|---|
+| Holding | Qty | Buy price | Close | Gain | Fair value range | Buy below | Where the price sits | Thesis |
+|---|---|---|---|---|---|---|---|---|
 
 "Where the price sits" is one of: **below the range**, **inside the range**, **above the
 range**. That is arithmetic against the range from the last research report, not a view.
+`Buy below` comes from the Companies row. It is the price the research says to buy under,
+and it is often far below the range, so the two are shown side by side.
 
 ## Step 4 — why it moved, for anything over 5% this week
 
@@ -233,13 +235,18 @@ For each company whose Status is **Researched** or **Watching** and whose Verdic
 is **Pass** or **Conditional** — the same rows as the "Watching for price" view in
 Notion:
 
-| Company | Verdict | Fair value range | Close | Position vs range | Thesis health | Last researched |
-|---|---|---|---|---|---|---|
+| Company | Verdict | Buy below | Close | Gap to buy-below | Fair value range | Thesis health | Last researched |
+|---|---|---|---|---|---|---|---|
 
-Order them by how far below the range the price sits. That ordering is arithmetic.
+**The buy list uses `Buy below`, not the fair value range.** Gap to buy-below = close ÷
+buy-below − 1. Zero or less means the price is at or under the buy-below price. Order the
+names by that gap, smallest first. That ordering is arithmetic.
 
-Say plainly which one is furthest below its range and why the gap exists if the reason
-is known — a result, a sector move, an index exclusion. Then stop.
+A name whose row has no `Buy below` goes at the bottom, marked "no buy-below price — run
+`/stock-research <SYMBOL>` again". Never work one out inside the check.
+
+Say plainly which name is closest to its buy-below price, and why the gap exists if the
+reason is known — a result, a sector move, an index exclusion. Then stop.
 
 **A recommendation, never an amount.** For each holding, and for each name on the buy
 list, give a one-line recommendation — hold, review, or sell because a thesis line broke;
@@ -254,7 +261,12 @@ the amount and the timing are Shivay's.
 # Portfolio check — <DD Mon YYYY>
 Prices: NSE bhavcopy <date>
 
-<any red line that fired, in bold, first>
+<three plain lines, no market words:
+1. does anything need Shivay — a sell reason broke, a flag, or "nothing needs you"
+2. the buy list — which name is closest to its buy price, or "none near"
+3. what to do this week — or "nothing to do">
+
+<any red line that fired, in bold, right after the three lines>
 
 ## Holdings
 <the table from step 3>

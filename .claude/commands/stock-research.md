@@ -32,7 +32,8 @@ skipped the work.
 Full company name, NSE symbol, BSE code, industry. Not listed, or SME board? Stop and
 write "not investable under house rules".
 
-Then grade the company and write the grade at the top of the report.
+Then grade the company and write the grade at the top of the report, right after the
+three summary lines.
 
 | Grade | Looks like | The trap | What to do |
 |---|---|---|---|
@@ -466,15 +467,23 @@ Follow `CLAUDE.md`, principle 2. Five parts, all required:
 1. **The call** — Pass, Conditional, Grey or Reject, in one line, with the reasons. A
    failed gate, or five sentences that cannot be completed, means it cannot be Pass.
 2. **Against the index fund** — the base-case 10-year return at today's price. Year-10
-   profit grows at the three-year base-case rate from step 7; the exit PE is the lower of
-   today's PE and the stock's own ten-year median PE (`CLAUDE.md`, principle 2):
+   profit grows at the three-year base-case rate from step 7, with a known one-time hit
+   modelled as one drop and then growth again (`CLAUDE.md` § Method rules Claude set); the
+   exit PE is the lower of today's PE and the stock's own ten-year median PE (`CLAUDE.md`,
+   principle 2):
    ```bash
    python3 tools/terminal_value.py irr --profit <base-case year-10 profit> \
      --mcap <market cap today> --pe <lower of today's and median PE> --years 10 --payout <yield minus dilution>
    ```
-   Set it against 12%, and show the step 7 strict-model return beside it. Below 12%, say
-   plainly that a Nifty 50 index fund is the better bet on these numbers.
-3. **Buy-below price** — for Conditional, the price at which that return reaches 12%.
+   Set it against 12%, and show the step 7 strict-model return beside it. Then place it in
+   the too-close-to-call table (`CLAUDE.md`, principle 2): 13.5% or more beats the index
+   fund; 10.5% to 13.5% is too close to call, so say "index fund instead" plainly; under
+   10.5% the index fund is clearly better. Only 13.5% or more can be Pass.
+3. **Buy-below price** — for Conditional, the price at which that return reaches 13.5%. At
+   each price tried, scale the market cap and the yield to that price, and set the exit PE
+   to the lowest of the PE at that price, today's PE and the ten-year median PE
+   (`CLAUDE.md`, the buy-below rule). Search for the highest price that still gives 13.5%.
+   It goes into the Notion block as `Buy below`.
 4. **Confidence** — high, medium or low, and the one or two facts that would change it.
 5. **Fit** — anything Shivay already holds or watches with the same risk: the same sector,
    the same single customer, the government as owner or buyer.
@@ -483,10 +492,19 @@ Never an amount, never a timing, and never the Verdict field.
 
 ## Output rules
 
+The report opens with three plain lines, straight under the title, no market words:
+
+1. what the company does, in one sentence a friend would understand
+2. the recommendation from step 14 — buy below ₹X, wait, or reject — and whether it
+   beats a Nifty 50 index fund
+3. what Shivay decides now — the Verdict, or "nothing, the gates failed"
+
+Then:
+
 1. Every figure has a source and a date. An estimate is labelled "estimate".
 2. Key data in tables.
 3. Each deep-read step ends with its lens question answered.
-4. Information grade at the top, with what could not be known.
+4. Information grade right after the three summary lines, with what could not be known.
 5. At the end, separate **how confident the analysis is** — a function of how much
    material existed — from **how certain the business is**, which is a function of the
    business. They are not the same, and a C-grade company can be a better business than
@@ -535,6 +553,7 @@ Info grade:        <A | B | C>
 Checklist:         <Passed | Failed | Grey>
 Fair value low:    <number, or blank if stopped at the gates>
 Fair value high:   <number, or blank if stopped at the gates>
+Buy below:         <the step 14 buy-below price, or blank if stopped at the gates or none exists>
 Price on report:   <close on the report date>
 Thesis lines:      <the assumptions, one per line, or blank if stopped at the gates>
 Red lines:         <the red lines, or the one that triggered at the gates>

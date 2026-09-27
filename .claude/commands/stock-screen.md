@@ -27,8 +27,9 @@ as both — Textiles, Power, Capital markets. The theme is the wider universe, b
 of a sector often sits below the Nifty 500 cut. Run `universe --list-sectors` first, and if
 a theme of that name exists, use `--theme`.
 
-**The report's first line must state which universe was used and how many names were in
-it.** A screen that ran on a fifth of a sector and does not say so is worse than no screen.
+**The report's first line after the three summary lines must state which universe was
+used and how many names were in it.** A screen that ran on a fifth of a sector and does
+not say so is worse than no screen.
 
 Anything the tool prints as "outside Nifty 500" is a smaller company — list it in the
 report under **Not screened** with its name, and say why (below the Nifty 500 cut).
@@ -87,6 +88,7 @@ exemption and its evidence into the report.
 | Sector | Skip | Use instead |
 |---|---|---|
 | Lenders — banks and NBFCs | checks 2, 3 and 5 | capital adequacy at or above the legal minimum (15% for an NBFC, 11.5% for a bank), and gross NPA below 3% and not rising two years running (decided, see `CLAUDE.md`) |
+| Brokers and wealth firms | nothing — checks 2 and 5 apply as written, even with a lending arm (decided, see `CLAUDE.md`) | — |
 | Insurers | check 3 | net interest margin, gross NPA trend, capital adequacy, provision cover |
 | REITs and InvITs | check 1 | ROE on core operating profit, distribution yield and cover |
 | Cyclicals — metals, cement, sugar, chemicals | single-year figures | full-cycle averages covering one peak and one trough |
@@ -99,7 +101,7 @@ carry the company forward flagged.
 
 | # | Check | Pass | Relax when |
 |---|---|---|---|
-| 1 | Valuation | PE reasonable against its own 10-year range and its peers | high grower, PEG below 1.5 |
+| 1 | Valuation | PE at or below its own ten-year median | PEG below 1.5, growth capped at 25% a year (set, see `CLAUDE.md` § Method rules Claude set) |
 | 2 | ROE | above 15%, or a clear 3-year improvement | asset-heavy business: average of the **last three years** above 10%, or a clear 3-year rise (decided, see `CLAUDE.md`) |
 | 3 | Cash flow | operating cash flow positive and above 70% of net profit | — |
 | 4 | Debt | debt to equity below 0.6 | utilities, power and infra up to 1.0 |
@@ -124,10 +126,11 @@ figures, from:
 
 Write the source and its as-of date next to every figure.
 
-**Where this table says "relax" without a number, pick one, and put it in the report as
-its own line: the number used, and that it is an assumption rather than a decided rule.**
-Two screens cannot be compared if each quietly chose a different bar. If the same relaxed
-bar gets used twice, it should stop being an assumption and go into `CLAUDE.md`.
+**Where this table says "relax" without a number, first look in `CLAUDE.md` § Method
+rules Claude set.** If no rule covers it, pick a number, write it there as a new rule,
+and say in the report that the rule is new. Do not ask Shivay: method questions are
+Claude's (`CLAUDE.md`, § Who decides what). Two screens cannot be compared if each
+quietly chose a different bar.
 
 Keep rule: 5 of 5 pass, keep. 4 pass, keep with a ⚠ yellow flag, whether the fifth
 failed narrowly or clearly — write which check failed and by how much next to the name
@@ -163,6 +166,11 @@ the list.
 
 ```
 # <Sector> screen — <DD Mon YYYY>
+
+<three plain lines, no market words:
+1. what was looked at — the sector and how many companies
+2. what came out — the names left, each with a few words on why
+3. what Shivay does now — pick which ones get studied, or "nothing">
 
 ## What was screened
 Universe size, source, and what was left out and why.
