@@ -2,18 +2,17 @@
 
 > **Decision, 23 Sep 2026 — the Rolls-Royce / Hawk case does not count against HAL for now.** Shivay decided: the CBI's May 2023 FIR names Rolls-Royce, its people and then public servants, not HAL, and it is at the investigation stage. Gate 4 stands as passed. The red lines already make an adverse finding against HAL officials in this case fatal.
 
-**Written:** 2026-09-23, from `reports/IN/HAL/research-20260923.md`
-**Price on the report date:** ₹4,800 (NSE close 22-Sep-2026)
-
-**Gate 4 carries a ⚠ integrity question for Shivay:** the CBI's Rolls-Royce / Hawk trainer FIR (May 2023). HAL is not named as accused.
+**Written:** 2026-09-27, from `reports/IN/HAL/research-20260927.md` (replaces the 23 Sep version above the check log)
+**Price on the report date:** ₹4,800 (NSE close 25-Sep-2026)
+**Recommendation (step 14):** Conditional. Index fund instead at today's price. Buy below about ₹1,285. Ten-year base case +1.72% a year against 12%; strict model −1.38%.
 
 ## The reason, in five sentences
 
 > I would buy **HAL** at about **₹4,800** because:
 > 1. The business is **India's sole-source builder and maintainer of military aircraft, paid in advance by the Ministry of Defence**, and I understand how it earns.
 > 2. Its moat is **sole-source design plus decades of repair-and-overhaul lock-in**, and it is **stable**, with pressure at the edges.
-> 3. Management is **competent caretakers**, because **the order book reached ₹2.54 lakh cr with no debt**; but delivery has lagged and the board ran two months without its committees.
-> 4. The price is about **0.86** of the base-case value of ₹5,566, and the margin of safety comes from **the order book and customer-funded working capital, not from the multiple**. Thin: the base case holds a 30x multiple, twice the own median.
+> 3. Management is **competent caretakers**, because **the order book reached ₹2.54 lakh cr with no debt**; but delivery has lagged, the board ran two months without its committees, and a supplier's fake test reports got through for eight months.
+> 4. The price is about **0.86** of the three-year base-case value of ₹5,565, and the margin of safety comes from **the order book and customer-funded working capital, not from the multiple**. Thin: the three-year base case holds a 30x multiple, twice the own median, and the ten-year base case returns only 1.7% a year.
 > 5. If I am wrong, the downside is limited because **there is no debt and the customer pays in advance; but the bad case is −41%**.
 
 ## The assumptions
@@ -21,9 +20,9 @@
 | # | Assumption | How it is checked | How often | Status |
 |---|---|---|---|---|
 | 1 | Order book stays at or above ₹2,00,000 cr (₹2,54,538 cr at Mar 2026) | results, AR | half-yearly | 🟢 holds |
-| 2 | Revenue grows at least 8% a year (FY26 +6.8%; FY21-FY26 7.8%) | annual results | yearly | 🟡 weakening |
-| 3 | Operating profit excluding other income rises above ₹10,500 cr by FY28 (FY26 ₹9,788 cr; flat since FY24) | results | yearly | 🟡 weakening |
-| 4 | Operating margin excluding other income stays at or above 28% (FY26 30%) | quarterly results | quarterly | 🟢 holds |
+| 2 | Revenue grows at least 8% a year (FY26 +6.8%; FY21-FY26 7.8%; TTM +2.1% on FY26) | annual results | yearly | 🟡 weakening |
+| 3 | Operating profit excluding other income rises above ₹10,500 cr by FY28 (FY26 ₹9,788 cr; TTM ₹10,014 cr) | results | yearly | 🟡 weakening |
+| 4 | Operating margin excluding other income stays at or above 28% (FY26 30%; TTM 30%) | quarterly results | quarterly | 🟢 holds |
 | 5 | First Tejas Mk1A squadron (16-18 aircraft) delivered by Mar 2027 | company statements, results | half-yearly | 🟡 weakening |
 
 ## The red lines
@@ -37,15 +36,18 @@
 | 5 | Government holding falls below 51% | warning | investigate before anything else |
 | 6 | The 4th price revision reverses more than ₹1,000 cr of revenue already booked | serious | re-grade the earnings |
 
+The yearly change of statutory auditor is the C&AG's appointment and does not trigger red line 1. A resignation or a qualification would.
+
 ## The valuation anchors
 
 | Measure | On the report date | Good case | Base case | Bad case |
 |---|---|---|---|---|
-| Price | ₹4,800 | ₹8,479.8 | ₹5,565.8 | ₹2,822.3 |
+| Price | ₹4,800 | ₹8,479.2 | ₹5,565.4 | ₹2,822.1 |
 | PE | 34.4x | 40x | 30x | 18x |
-| Market cap (₹ cr) | 3,21,012 | 5,67,108 | 3,72,226 | 1,88,748 |
-| Estimated value | range ₹1,460-₹5,570 | ₹8,479.8 | ₹5,565.8 | ₹2,822.3 |
+| Market cap (₹ cr) | 3,21,012 | 5,67,068 | 3,72,200 | 1,88,735 |
+| Estimated value | range ₹1,460-₹5,570 | ₹8,479.2 | ₹5,565.4 | ₹2,822.1 |
 | Margin of safety (value − price) / value | — | +43.4% | +13.8% | −70.1% |
+| Buy below (step 14) | ₹1,285: exit PE 9.22x, yield 3.50%, base case +13.50% a year | | | |
 
 ## Check log
 

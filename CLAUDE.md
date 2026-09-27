@@ -313,6 +313,24 @@ shrinks forever, which is a different claim. First case: IEX and market coupling
 this gives 10.08% a year instead of 2.39%. That is still below 12%, so the call does not
 change.
 
+**It enters the base case only once it is known.** The hit goes into the base case when
+the event is decided and its size, or who bears it, is known. Until then it is a
+scenario with a probability, and the base case leaves it out. First case: IRCTC and the
+₹5 UPI charge from 15 Oct 2026, where who pays is not yet known.
+
+### A crime against the company is not an integrity question
+
+**Set 27 September 2026.** Gate 4's stop rule covers allegations against the company, its
+promoters or its management that were never decided on the facts. When the company is
+the one wronged — a supplier forging test reports, staff stealing from it — that is not
+an integrity question. It is scored inside gate 4 as a finding about controls and
+quality, and goes on the failure list if it creates a real risk (for example, safety).
+
+If the case later names a director or a senior manager, it becomes an integrity question
+and goes to Shivay. First case: HAL, which filed its own FIR in Jun 2026 over 199 forged
+test reports from a supplier, and whose staff were charged in 2019 with taking ₹13.28 cr
+from it.
+
 ---
 
 ## House rules that override any analysis

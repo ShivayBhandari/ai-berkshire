@@ -1,16 +1,17 @@
 # RailTel (RAILTEL) — thesis
 
-**Written:** 2026-09-23, from `reports/IN/RAILTEL/research-20260923.md`
-**Price on the report date:** ₹263.90 (NSE close 22-Sep-2026)
+**Written:** 2026-09-27, from `reports/IN/RAILTEL/research-20260927.md` (replaces the 2026-09-23 version)
+**Price on the report date:** ₹260.15 (NSE close 25-Sep-2026)
+**Buy below (step 14):** ₹216 — the price at which the base-case ten-year return reaches 13.5%
 
 ## The reason, in five sentences
 
-> I would buy **RailTel** at about **₹264** because:
+> I would buy **RailTel** at about **₹260** because:
 > 1. The business is **bandwidth and data-centre services on fibre along the railway tracks, plus government IT projects**, and I understand how it earns.
 > 2. Its moat is **an exclusive right of way along railway track**, and it is **stable** for the telecom half.
 > 3. Management is **growth-focused caretakers**, because **revenue tripled in five years with a clean audit, but margin halved and cash lagged**.
-> 4. The price is about **0.73** of the base-case value of ₹364, and the margin of safety comes from **a PE below its own median, with no debt**. Thin: the base case holds today's multiple and FCF yield is 0.5%.
-> 5. If I am wrong, the downside is limited because **there is no debt and ₹654 cr of cash; the bad case is −24%**.
+> 4. The price is about **0.72** of the base-case value of ₹364, and the margin of safety comes from **a PE below its own median, with no debt**. Thin: the base case holds today's multiple and FCF yield is 0.5%.
+> 5. If I am wrong, the downside is limited because **there is no debt and ₹654 cr of cash; the bad case is −23%**.
 
 ## The assumptions
 
@@ -28,7 +29,7 @@
 |---|---|---|---|
 | 1 | Fraud, accounts that cannot be trusted, or a modified audit report | fatal | exit fully |
 | 2 | Revenue falling two quarters running year on year | serious | cut by half, reopen the case |
-| 3 | The Railways open track-side fibre to others, or raise the 7% revenue share | serious | full re-research |
+| 3 | The Railways open track-side fibre to others, or raise the revenue share | serious | full re-research |
 | 4 | A regulation that changes the business (DoT licence fee, right-of-way rules) | serious | revalue from scratch |
 | 5 | Government holding falls below 51% | warning | investigate before anything else |
 | 6 | A receivable or contingent-liability write-off above ₹100 cr in a year | serious | re-grade management |
@@ -37,11 +38,11 @@
 
 | Measure | On the report date | Good case | Base case | Bad case |
 |---|---|---|---|---|
-| Price | ₹263.90 | ₹531.4 | ₹363.5 | ₹199.7 |
-| PE | 24.5x | 30x | 24x | 16x |
-| Market cap (₹ cr) | 8,470 | 17,055 | 11,666 | 6,409 |
+| Price | ₹260.15 | ₹531.4 | ₹363.5 | ₹199.7 |
+| PE | 24.1x | 30x | 24x | 16x |
+| Market cap (₹ cr) | 8,349 | 17,055 | 11,666 | 6,409 |
 | Estimated value | range ₹99-₹364 | ₹531.4 | ₹363.5 | ₹199.7 |
-| Margin of safety (value − price) / value | — | +50.3% | +27.4% | −32.1% |
+| Margin of safety (value − price) / value | — | +51.0% | +28.4% | −30.3% |
 
 ## Check log
 
