@@ -68,6 +68,18 @@ instead"**, said plainly, and the call cannot be Pass. Pass needs a base case of
 | 10.5% to 13.5% | too close to call: index fund instead, and a buy-below price |
 | under 10.5% | the index fund is clearly better, and a buy-below price if one exists |
 
+**The sell-above rule, set 27 September 2026.** Every study also gives a **sell-above
+price**: the price at which the base-case 10-year return, worked out the same way as the
+buy-below, falls to **10.5%**, the bottom of the too-close-to-call zone. Above it, a share
+you own has become too expensive: the index fund is clearly the better place for that
+money, so the profit is booked and moved to the next stock under its buy-below, or back
+to the index fund. It goes into the Companies row's `Sell above` field.
+
+Buying at 13.5% and selling at 10.5% leaves a gap on purpose, so a price moving a little
+around one line does not cause buying and selling back and forth. A red line that fires
+is a sell whatever the price. The sell-above is set on the study date and rises as profit
+grows, so a Held stock is studied again after each annual result.
+
 The recommendation is a reasoned view, not a forecast. It exists because weighing all of
 this at once, the same way every time, is the part a person finds hardest to do alone.
 

@@ -483,7 +483,9 @@ Follow `CLAUDE.md`, principle 2. Five parts, all required:
    each price tried, scale the market cap and the yield to that price, and set the exit PE
    to the lowest of the PE at that price, today's PE and the ten-year median PE
    (`CLAUDE.md`, the buy-below rule). Search for the highest price that still gives 13.5%.
-   It goes into the Notion block as `Buy below`.
+   It goes into the Notion block as `Buy below`. In the same way, find the price at which
+   the return falls to 10.5%: that is the **sell-above** price (`CLAUDE.md`, the sell-above
+   rule), and it goes into the block as `Sell above`.
 4. **Confidence** — high, medium or low, and the one or two facts that would change it.
 5. **Fit** — anything Shivay already holds or watches with the same risk: the same sector,
    the same single customer, the government as owner or buyer.
@@ -554,6 +556,7 @@ Checklist:         <Passed | Failed | Grey>
 Fair value low:    <number, or blank if stopped at the gates>
 Fair value high:   <number, or blank if stopped at the gates>
 Buy below:         <the step 14 buy-below price, or blank if stopped at the gates or none exists>
+Sell above:        <the step 14 sell-above price, or blank if stopped at the gates>
 Price on report:   <close on the report date>
 Thesis lines:      <the assumptions, one per line, or blank if stopped at the gates>
 Red lines:         <the red lines, or the one that triggered at the gates>

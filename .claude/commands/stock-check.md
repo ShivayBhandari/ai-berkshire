@@ -49,13 +49,20 @@ earlier check file shows it in EQ.
 
 ## Step 3 — the table
 
-| Holding | Qty | Buy price | Close | Gain | Fair value range | Buy below | Where the price sits | Thesis |
-|---|---|---|---|---|---|---|---|---|
+| Holding | Qty | Buy price | Close | Gain | Fair value range | Buy below | Sell above | Where the price sits | Thesis |
+|---|---|---|---|---|---|---|---|---|---|
 
 "Where the price sits" is one of: **below the range**, **inside the range**, **above the
 range**. That is arithmetic against the range from the last research report, not a view.
 `Buy below` comes from the Companies row. It is the price the research says to buy under,
 and it is often far below the range, so the two are shown side by side.
+
+**Sell above.** For each holding, compare the close with `Sell above` from the row. At or
+above it, write under Needs attention, in bold: "**<SYMBOL> is at or above its sell-above
+price (₹X): the index fund is now clearly better for this money — book the profit and
+move it**". That is arithmetic against the research, not a view. The sale, the amount
+and the timing stay Shivay's. A holding with no `Sell above` is flagged "no sell-above
+price — run `/stock-research <SYMBOL>` again". Never work one out inside the check.
 
 ## Step 4 — why it moved, for anything over 5% this week
 
